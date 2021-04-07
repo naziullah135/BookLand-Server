@@ -63,7 +63,16 @@ client.connect((err) => {
       res.send(books)
     })
   })
+
+  app.delete('/deleteBook/:id',(req,res)=>{
+    bookCollection.deleteOne({_id: ObjectId(req.params.id)})
+    .then(result => {
+      console.log(result);
+    })
+  })
 });
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
